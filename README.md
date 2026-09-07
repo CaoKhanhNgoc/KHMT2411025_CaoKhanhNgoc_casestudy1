@@ -1,6 +1,7 @@
 # casestudy1
 
 A new Flutter project.
+Flutter Case Study 1
 
 ## Getting Started
 
