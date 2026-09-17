@@ -1,121 +1,183 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(const ExpenseManagerApp());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class ExpenseManagerApp extends StatelessWidget {
+  const ExpenseManagerApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // TRY THIS: Try running your application with "flutter run". You'll see
-        // the application has a purple toolbar. Then, without quitting the app,
-        // try changing the seedColor in the colorScheme below to Colors.green
-        // and then invoke "hot reload" (save your changes or press the "hot
-        // reload" button in a Flutter-supported IDE, or press "r" if you used
-        // the command line to start the app).
-        //
-        // Notice that the counter didn't reset back to zero; the application
-        // state is not lost during the reload. To reset the state, use hot
-        // restart instead.
-        //
-        // This works for code too, not just values: Most code changes can be
-        // tested with just a hot reload.
-        colorScheme: .fromSeed(seedColor: Colors.deepPurple),
-      ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      debugShowCheckedModeBanner: false,
+      title: 'Expense Manager',
+      home: const WelcomePage(),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
-
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
-
-  final String title;
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
-    });
-  }
+class WelcomePage extends StatelessWidget {
+  const WelcomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
     return Scaffold(
-      appBar: AppBar(
-        // TRY THIS: Try changing the color here to a specific color (to
-        // Colors.amber, perhaps?) and trigger a hot reload to see the AppBar
-        // change color while the other colors stay the same.
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
-      ),
-      body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
+      backgroundColor: Colors.white,
+      body: SafeArea(
         child: Column(
-          // Column is also a layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          //
-          // Column has various properties to control how it sizes itself and
-          // how it positions its children. Here we use mainAxisAlignment to
-          // center the children vertically; the main axis here is the vertical
-          // axis because Columns are vertical (the cross axis would be
-          // horizontal).
-          //
-          // TRY THIS: Invoke "debug painting" (choose the "Toggle Debug Paint"
-          // action in the IDE, or press "p" in the console), to see the
-          // wireframe for each widget.
-          mainAxisAlignment: .center,
           children: [
-            const Text('You have pushed the button this many times:'),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
+            // Phần nội dung ở giữa
+            Expanded(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  // LOGO
+                  const WalletLogo(),
+
+                  const SizedBox(height: 20),
+
+                  // TIÊU ĐỀ
+                  const Text(
+                    'Expense Manager',
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                      color: Color(0xFF14243A),
+                    ),
+                  ),
+
+                  const SizedBox(height: 14),
+
+                  // MÔ TẢ
+                  const Text(
+                    'Quản lý chi tiêu cá nhân\nđơn giản và hiệu quả',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontSize: 11,
+                      height: 1.5,
+                      color: Color(0xFF8090A5),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+
+            // NÚT BẮT ĐẦU
+            Padding(
+              padding: const EdgeInsets.fromLTRB(32, 0, 32, 32),
+              child: SizedBox(
+                width: double.infinity,
+                height: 36,
+                child: ElevatedButton(
+                  onPressed: () {
+                    // Sau này xử lý khi bấm Bắt đầu ở đây
+                  },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: const Color(0xFF1F70C8),
+                    foregroundColor: Colors.white,
+                    elevation: 0,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(9),
+                    ),
+                  ),
+                  child: const Text(
+                    'Bắt đầu',
+                    style: TextStyle(
+                      fontSize: 12,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+              ),
             ),
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
+    );
+  }
+}
+
+// ===============================
+// LOGO VÍ TIỀN
+// ===============================
+
+class WalletLogo extends StatelessWidget {
+  const WalletLogo({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: 100,
+      height: 80,
+      child: Stack(
+        alignment: Alignment.center,
+        children: [
+          // Phần màu xanh lá phía sau
+          Positioned(
+            top: 5,
+            left: 25,
+            child: Container(
+              width: 56,
+              height: 30,
+              decoration: BoxDecoration(
+                color: const Color(0xFF72C77B),
+                borderRadius: BorderRadius.circular(5),
+              ),
+            ),
+          ),
+
+          // Phần xanh lá nhỏ bên trái
+          Positioned(
+            top: 14,
+            left: 18,
+            child: Container(
+              width: 17,
+              height: 25,
+              decoration: BoxDecoration(
+                color: const Color(0xFF5DBA6A),
+                borderRadius: const BorderRadius.only(
+                  topLeft: Radius.circular(5),
+                  bottomLeft: Radius.circular(5),
+                ),
+              ),
+            ),
+          ),
+
+          // Thân ví màu xanh
+          Positioned(
+            bottom: 5,
+            left: 10,
+            child: Container(
+              width: 90,
+              height: 56,
+              decoration: BoxDecoration(
+                color: const Color(0xFF1F78D1),
+                borderRadius: BorderRadius.circular(12),
+              ),
+            ),
+          ),
+
+          // Miếng khóa ví
+          Positioned(
+            bottom: 22,
+            right: 10,
+            child: Container(
+              width: 35,
+              height: 21,
+              decoration: BoxDecoration(
+                color: const Color(0xFF155DB0),
+                borderRadius: BorderRadius.circular(7),
+              ),
+              child: const Center(
+                child: CircleAvatar(
+                  radius: 5,
+                  backgroundColor: Colors.white,
+                ),
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
