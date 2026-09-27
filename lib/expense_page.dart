@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'dashboard_screen.dart';
 void main() {
   runApp(const MyApp());
 }
@@ -45,10 +45,13 @@ class HomeScreen extends StatelessWidget {
                   ),
                 );
               },
+              style: ElevatedButton.styleFrom(
+                foregroundColor: Colors.black,
+              ),
               child: const Text('Thêm giao dịch'),
             ),
 
-            const SizedBox(height: 20),
+            const SizedBox(height: 24),
 
             ElevatedButton(
               onPressed: () {
@@ -59,8 +62,29 @@ class HomeScreen extends StatelessWidget {
                   ),
                 );
               },
+              style: ElevatedButton.styleFrom(
+                foregroundColor: Colors.black,
+              ),
               child: const Text('Sửa giao dịch'),
             ),
+
+            const SizedBox(height: 24),
+
+            // ===== NÚT DASHBOARD MỚI =====
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const DashboardScreen(),
+                  ),
+                );
+              },
+              style: ElevatedButton.styleFrom(
+                foregroundColor: Colors.black,
+              ),
+              child: const Text('Dashboard'),
+            )
           ],
         ),
       ),
