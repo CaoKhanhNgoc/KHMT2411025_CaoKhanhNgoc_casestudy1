@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:casestudy1/expense_page.dart';
-void main() {
+import 'database.dart';
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  await DatabaseHelper.instance.database;
+
   runApp(const ExpenseManagerApp());
 }
 
